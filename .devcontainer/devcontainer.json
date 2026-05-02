@@ -1,8 +1,14 @@
 {
   "name": "circuitpython-dev",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "args": {
+      "USERNAME": "op",
+      "USER_UID": "1000",
+      "USER_GID": "1000"
+    }
   },
+  "remoteUser": "op",
   "workspaceFolder": "/workspace",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "runArgs": [
@@ -10,6 +16,9 @@
     "-v", "/dev:/dev",
     "-v", "/media:/media",
     "-v", "/run/media:/run/media"
+  ],
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/op/.ssh,type=bind,readonly"
   ],
   "customizations": {
     "vscode": {
