@@ -1,5 +1,6 @@
 {
   "name": "circuitpython-dev",
+  "containerName": "circuitpython-dev",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
@@ -15,7 +16,8 @@
     "--privileged",
     "-v", "/dev:/dev",
     "-v", "/media:/media",
-    "-v", "/run/media:/run/media"
+    "-v", "/run/media:/run/media",
+    "--hostname=circuitpython-dev"
   ],
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/op/.ssh,type=bind,readonly",
