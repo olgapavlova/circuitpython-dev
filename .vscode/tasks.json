@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CircuitPython: залить код",
+      "type": "shell",
+      "command": "./scripts/deploy.sh"
+    },
+    {
+      "label": "CircuitPython: проверить USB",
+      "type": "shell",
+      "command": "lsusb && echo && ls -l /dev/serial/by-id"
+    },
+    {
+      "label": "CircuitPython: смонтировать диск",
+      "type": "shell",
+      "command": "mkdir -p /mnt/CIRCUITPY && mount /dev/sde1 /mnt/CIRCUITPY"
+    },
+    {
+      "label": "CircuitPython: размонтировать диск",
+      "type": "shell",
+      "command": "umount /dev/sde1"
+    },
+    {
+      "label": "CircuitPython: смонтировать SD-карту",
+      "type": "shell",
+      "command": "mkdir -p /mnt/LILYGO && mkdir -p /mnt/LILYGO/sd && mount /dev/sdf1 /mnt/LILYGO/sd"
+    },
+    {
+      "label": "CircuitPython: найти CIRCUITPY",
+      "type": "shell",
+      "command": "find /mnt -maxdepth 4 -type d -name CIRCUITPY 2>/dev/null"
+    },
+    {
+      "label": "CircuitPython: открыть serial",
+      "type": "shell",
+      "command": "picocom -b 115200 /dev/serial/by-id/usb-LILYGO_T-Dongle_S3_4E3B322FCD4F-if00",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

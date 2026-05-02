@@ -1,0 +1,22 @@
+{
+  "name": "circuitpython-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "runArgs": [
+    "--privileged",
+    "-v", "/dev:/dev",
+    "-v", "/media:/media",
+    "-v", "/run/media:/run/media"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}
