@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SRC="${1:-src/code.py}"
+SRC="${1:-code.py}"
 
 DEST="$(find /mnt -maxdepth 3 -type d -name CIRCUITPY 2>/dev/null | head -n 1)"
 
@@ -10,7 +10,7 @@ if [ -z "$DEST" ]; then
   exit 1
 fi
 
-cp "$SRC" "$DEST/code.py"
+cp "src/$SRC" "$DEST/code.py"
 
 circup --path $DEST install --auto
 

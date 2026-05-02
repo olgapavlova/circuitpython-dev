@@ -28,6 +28,8 @@ RUN echo "${USERNAME} ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} \
 RUN python -m pip install --upgrade pip \
     && pip install circup adafruit-ampy mpremote pyserial
 
+RUN usermod -aG dialout op
+
 WORKDIR /workspace
 
 RUN chsh -s /bin/bash op

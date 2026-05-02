@@ -33,6 +33,7 @@ from adafruit_display_text import label
 DISPLAY_UPDATE_SECONDS = 60
 
 display = board.DISPLAY
+display.brightness = 0.0
 
 screen = displayio.Group()
 bg_bitmap = displayio.Bitmap(display.width, display.height, 1)

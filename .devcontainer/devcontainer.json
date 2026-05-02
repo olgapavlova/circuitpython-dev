@@ -1,6 +1,5 @@
 {
   "name": "circuitpython-dev",
-  "containerName": "circuitpython-dev",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
@@ -17,6 +16,10 @@
     "-v", "/dev:/dev",
     "-v", "/media:/media",
     "-v", "/run/media:/run/media",
+    "-v", "/mnt/CIRCUITPY:/mnt/CIRCUITPY",
+    "-v", "/mnt/LILYGO/sd:/mnt/LILYGO/sd",
+
+    "--name", "circuitpython-dev",
     "--hostname=circuitpython-dev"
   ],
   "mounts": [
