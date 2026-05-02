@@ -18,14 +18,26 @@
     "-v", "/run/media:/run/media"
   ],
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/op/.ssh,type=bind,readonly"
+    "source=${localEnv:HOME}/.ssh,target=/home/op/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/op/.gitconfig,type=bind",
+    "source=/run/user/1000/gnupg,target=/run/user/1000/gnupg,type=bind",
+    "source=${localEnv:HOME}/.gnupg,target=/home/op/.gnupg,type=bind",
+    "source=${localEnv:HOME}/.bashrc,target=/home/op/.bashrc,type=bind",
+    "source=${localEnv:HOME}/.terminal_init,target=/home/op/.terminal_init,type=bind"
   ],
+  "remoteEnv": {
+    "GPG_AGENT_INFO": "/run/user/1000/gnupg/S.gpg-agent",
+    "GNUPGHOME": "/home/op/.gnupg"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance"
       ]
+    },
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
     }
   }
 }

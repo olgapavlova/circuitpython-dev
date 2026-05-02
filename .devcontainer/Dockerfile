@@ -29,3 +29,5 @@ RUN python -m pip install --upgrade pip \
     && pip install circup adafruit-ampy mpremote pyserial
 
 WORKDIR /workspace
+
+RUN chsh -s /bin/bash op
