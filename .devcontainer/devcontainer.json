@@ -1,12 +1,7 @@
 {
   "name": "circuitpython-dev",
   "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "USERNAME": "op",
-      "USER_UID": "1000",
-      "USER_GID": "1000"
-    }
+    "dockerfile": "Dockerfile"
   },
   "remoteUser": "op",
   "workspaceFolder": "/workspace",
@@ -14,24 +9,20 @@
   "runArgs": [
     "--privileged",
     "-v", "/dev:/dev",
-    "-v", "/media:/media",
-    "-v", "/run/media:/run/media",
-    "-v", "/mnt/CIRCUITPY:/mnt/CIRCUITPY",
-    "-v", "/mnt/LILYGO/sd:/mnt/LILYGO/sd",
-
     "--name", "circuitpython-dev",
     "--hostname=circuitpython-dev"
   ],
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/op/.ssh,type=bind,readonly",
-    "source=${localEnv:HOME}/.gitconfig,target=/home/op/.gitconfig,type=bind",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/op/.gitconfig,type=bind,readonly",
     "source=/run/user/1000/gnupg,target=/run/user/1000/gnupg,type=bind",
     "source=${localEnv:HOME}/.gnupg,target=/home/op/.gnupg,type=bind",
-    "source=${localEnv:HOME}/.bashrc,target=/home/op/.bashrc,type=bind",
-    "source=${localEnv:HOME}/.terminal_init,target=/home/op/.terminal_init,type=bind"
+    "source=${localEnv:HOME}/.bashrc,target=/home/op/.bashrc,type=bind,readonly",
+    "source=${localEnv:HOME}/.terminal_init,target=/home/op/.terminal_init,type=bind,readonly",
+    "source=/mnt/CIRCUITPY,target=/mnt/CIRCUITPY,type=bind",
+    "source=/mnt/LILYGO/sd,target=/mnt/LILYGO/sd,type=bind"
   ],
   "remoteEnv": {
-    "GPG_AGENT_INFO": "/run/user/1000/gnupg/S.gpg-agent",
     "GNUPGHOME": "/home/op/.gnupg"
   },
   "customizations": {
@@ -39,10 +30,16 @@
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance"
-      ]
-    },
-    "settings": {
-      "terminal.integrated.defaultProfile.linux": "bash"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          }
+        }
+      }
     }
   }
 }

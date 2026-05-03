@@ -1,10 +1,15 @@
 # Dev container для CircuitPython
 
-Контейнер даёт среду разработки для работы с платами CircuitPython через Raspberry Pi.
+Контейнер даёт среду разработки для работы с платами CircuitPython.
 
 Схема работы:
 
-VS Code → SSH → Raspberry Pi → контейнер → USB-плата
+VS Code → контейнер → USB-плата
+
+## Предварительно
+Считаем, что устройство подмонтировано к `/mnt/CIRCUITPY`.
+
+Если есть SD-карта — она подмонтирована к `/mnt/LILYGO/sd`.
 
 ## Что внутри
 
@@ -22,11 +27,7 @@ VS Code → SSH → Raspberry Pi → контейнер → USB-плата
 - usbutils
 - jq
 
-Контейнер запускается с доступом к USB:
-
-- /dev
-- /media
-- /run/media
+Контейнер запускается с доступом к USB.
 
 ## Проверка
 
@@ -40,19 +41,19 @@ Serial:
 
 Диск:
 
-`find /media /run/media /mnt -maxdepth 4 -type d -name CIRCUITPY`
+`find /mnt -maxdepth 4 -type d -name CIRCUITPY`
 
 ## Заливка кода
 
-`./scripts/deploy.sh`
+`./scripts/deploy.sh <имя файла в каталоге src/>`
 
-или:
-
-`./scripts/deploy.sh src/code.py`
+Если без параметров, заливается `code.py`
 
 Файл копируется в:
 
 `CIRCUITPY/code.py`
+
+Это обеспечивает его автозапуск при подключении питания устройства.
 
 ## Установка библиотек (зависимостей)
 
@@ -105,4 +106,4 @@ os.listdir("/")
 
 Запуск через:
 
-`Tasks: Run Task`
+`Tasks: Run Task` (Command + Shift + P)

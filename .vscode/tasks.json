@@ -2,33 +2,33 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "CircuitPython: залить BLE Logger",
+      "label": "CircuitPython: залить code.py",
       "type": "shell",
-      "command": "./scripts/deploy.sh ble_logger.py"
+      "command": "./scripts/deploy.sh",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always",
+        "clear": true
+      }
     },
-    {
-      "label": "CircuitPython: залить Display Test",
-      "type": "shell",
-      "command": "./scripts/deploy.sh display_test.py"
-    },
-    {
-      "label": "CircuitPython: залить Brightness Test",
-      "type": "shell",
-      "command": "./scripts/deploy.sh display_brightness.py"
-    },
-
     {
       "label": "CircuitPython: найти CIRCUITPY",
       "type": "shell",
-      "command": "find /mnt -maxdepth 4 -type d -name CIRCUITPY 2>/dev/null"
+      "command": "find /mnt -maxdepth 4 -type d -name CIRCUITPY 2>/dev/null",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always",
+        "clear": true
+      }
     },
     {
       "label": "CircuitPython: открыть serial",
       "type": "shell",
       "command": "picocom -b 115200 /dev/ttyACM0",
       "presentation": {
+        "panel": "dedicated",
         "reveal": "always",
-        "panel": "new"
+        "clear": true
       }
     }
   ]
